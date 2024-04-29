@@ -1,3 +1,4 @@
+*These notes follow the HuggingFace [Deep RL course](https://huggingface.co/learn/deep-rl-course/unit0/introduction), they contain course images, theory rewritten (or not, if course text was clear for me), and some added stuff I thought will be useful in understanding*
 ### RL in a nutshell
 ![RL process](https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/rl-process.jpg)
 
@@ -44,7 +45,8 @@ Uses entire episode to update the policy.
 $$V(S_t) \leftarrow V(S_t) + \alpha[G_t-V(S_t)]$$
 
 Where $\alpha$ is learning rate and $G_t$ is total reward for the episode.
-![[Pasted image 20240427233955.png]]
+
+![image](https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-4.jpg)
 
 As this is a value-based policy example then $G_0 = R_1 + R_2 + ... + R_{n}$, therefore $G_0=3$, $G_1=2$ etc. so the update for the initial state is $V_{S_0} \leftarrow V_{S_0} + 1 \cdot [3 - V_{S_0}]$. This requires capturing a history of episodes tuples $(S, A, R, S_{t+1})$.
 **Problem**: 
@@ -91,13 +93,11 @@ a \sim A  & \text{with probability } \epsilon
 \end{cases}
 >$$
 
-
-
-![[Pasted image 20240428001644.png]]
+![Q-learning](https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-8.jpg)
 
 The Q comes from "quality" (value) of the action given that state. Internally the Q-function is a big (state, action) -> (value) mapping. 
 
-![[Pasted image 20240428003213.png]]
+![Q-learning](https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-2.jpg)
 
 But this is so naive that it can't work in more complicated cases. Mainly due to enormous size the Q-table would have to have.
 
