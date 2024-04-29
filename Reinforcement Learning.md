@@ -146,3 +146,24 @@ Handles the problem of overestimating Q-values by running DQN- and Target- netwo
 ???? why target-network
 ==DOPISAC==
 
+### Policy Gradient (more on policy based methods)
+The main premise of Reinforcement Learning is the reward hypothesis which states that all goals can be described as the maximization of the exptected cumulative reward. Therefor we look for optimal policy $\pi^*$ that will maximize the expected cumulative reward.
+
+- Value-based methods found this policy by learning the value function
+	- optimal value functions leads to optimal policy
+	- objective is to minimize the loss between predicted value and target, this leads to creating an approximate of the true action-value function
+	- policy is therefor implicit since its derived from the value function, in Q-Learning this policy is epsilon-greedy or greedy for example
+	
+- Policy-based methods learn to directly approximate the optimal policy $\pi^*$ 
+	- we aim to parametrize the policy, this can be done using a neural network approximation $\pi_\theta$, that will output a probability distribution over actions, due to probabilistic nature it is called the stochastic policy
+$$\pi_\theta(s) = \mathbb{P}[A\mid s;\theta]$$
+Knowing this, we can just run gradient descent on the $\pi_\theta$ network of which $\theta$ are the weights. Objective function that we maximize is $J(\theta)$, which is the expected cumulative reward.
+
+![Policy based](https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png)
+
+**Important to know:** there is also actor-critic method, which is a combination of both policy- and value-based methods.
+
+#### Policy-based and policy-gradient methods
+**Policy-based:** we search directly for optimal policy, by optimizing $\theta$ indirectly. It happens by maximizing the local approximation of the objective function by techniques like hill climbing, simulated annealing or evolution.
+**Policy-gradient:** optimal policy, but through direct $\theta$ optimization, by gradient descent on objectvie function $J(\theta)$.
+
